@@ -1,0 +1,23 @@
+# Django
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Environment
+venv/
+env/
+
+# Media (immagini, video)
+media/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Migrations (opzionale, ma puoi tenerle)
+# */migrations/
