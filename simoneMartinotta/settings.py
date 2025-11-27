@@ -22,11 +22,11 @@ MEDIA_URL = '/media/'
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4np39u^ogl+7bq4j23ylh*i#vl4q3a#3b^m!*aqd!5))chhrrm'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'f96c663f8dc0cca631cd5e3488f1ea5f')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
+DEBUG = os.environ.get('DEBUG', '') != 'False'
+PYTHON_VERSION = 3.12
 ALLOWED_HOSTS = ['*']
 
 
