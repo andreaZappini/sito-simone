@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'f96c663f8dc0cca631cd5e3488f1ea
 DEBUG = os.environ.get('DEBUG', '') != 'False'
 PYTHON_VERSION = 3.12
 ALLOWED_HOSTS = ['*']
-
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Application definition
 
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'sitoArte.middleware.LogoutAdminOutsideAdminMiddleware',
 ]
 
 ROOT_URLCONF = 'simoneMartinotta.urls'

@@ -1,13 +1,43 @@
+from django.utils import timezone
+
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Opera, ImmagineOpera, VideoOpera
+from .models import Biografia, Mostra, Opera, ImmagineOpera, VideoOpera
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
+def home(request):
+    ultima_opera = Opera.objects.order_by('-id').first() 
+    return render(request, 'sitoArte/home.html', {'ultima_opera': ultima_opera})
+
 def opere(request):
     opere = Opera.objects.all()
-    return render(request, 'sitoArte/opere.html', {'opere': opere}) 
+    return render(request, 'sitoArte/opere.html', {'opere': opere})
+
+def biografia(request):
+    biografia = Biografia.objects.first()
+    return render(request, 'sitoArte/biografia.html', {'biografia': biografia})
+
+def contatti(request):
+    return render(request, 'sitoArte/contatti.html')
+
+def mostre(request):
+    oggi = timezone.localdate()
+
+    in_programma = Mostra.objects.filter(data_inizio__gt=oggi).order_by('data_inizio')
+    in_corso = Mostra.objects.filter(data_inizio__lte=oggi, data_fine__gte=oggi).order_by('data_inizio')
+    passate = Mostra.objects.filter(data_fine__lt=oggi).order_by('-data_fine')
+
+    return render(request, 'sitoArte/mostre.html', {
+        'in_programma': in_programma,
+        'in_corso': in_corso,
+        'passate': passate,
+    })
+
+def dettaglio_mostra(request, pk):
+    mostra = get_object_or_404(Mostra, pk=pk)
+    return render(request, 'sitoArte/dettaglio_mostra.html', {'mostra': mostra})
 
 
 def dettaglio_opera(request, pk):

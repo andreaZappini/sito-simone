@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Opera, ImmagineOpera, VideoOpera
+from .models import Biografia, Mostra, Opera, ImmagineOpera, VideoOpera
 
 
 # Register your models here.
@@ -8,3 +8,5 @@ from .models import Opera, ImmagineOpera, VideoOpera
 admin.site.register(Opera)
 admin.site.register(ImmagineOpera)
 admin.site.register(VideoOpera)
+admin.site.register(Mostra)
+admin.site.register(Biografia)

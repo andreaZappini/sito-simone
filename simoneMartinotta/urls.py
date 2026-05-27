@@ -23,9 +23,12 @@ from sitoArte import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('opere/', include('sitoArte.urls')),
+    path('opere/', include('sitoArte.urlsOpere')),
     path('gestione/', include('sitoArte.urls_gestione')),
-    path('', views.opere, name='home'),
+    path('', views.home, name='home'),
+    path('biografia/', views.biografia, name="biografia"),
+    path('contatti/', views.contatti, name="contatti"),
+    path('mostre/', include('sitoArte.urlsMostre')),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
